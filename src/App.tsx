@@ -1,11 +1,9 @@
-const styleTest: ITest = {
-  color: 'red',
-};
+import { HomePage } from './pages';
 
 function App() {
   return (
     <div>
-      <h1 style={styleTest}>Hi my big World</h1>
+      <HomePage />
     </div>
   );
 }
