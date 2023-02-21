@@ -1,36 +1,29 @@
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
-import { spacing } from '@mui/system';
-import theme from 'constants/styleThema';
+import { FormControl, MenuItem, Select } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 //
+import { resources } from 'i18n';
 //код
 export default function LanguageSelection() {
-  const [leng, senLeng] = useState<any>('EN');
-  function handleChange(ev: SelectChangeEvent<HTMLSelectElement>) {
-    ev.preventDefault();
+  const [leng, setLeng] = useState<string>('EN');
+  const { t, i18n } = useTranslation();
+  function handleChange(ev: SelectChangeEvent) {
     const { value } = ev.target;
-    console.log(value);
-
-    senLeng(value);
+    i18n.changeLanguage(value);
+    setLeng(value);
   }
   return (
     <FormControl>
-      <InputLabel id="demo-simple-select-label">Age</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={leng}
-        label="lenguage"
-        onChange={handleChange}
-      >
-        <MenuItem value={'EN'}>EN</MenuItem>
-        <MenuItem value={'UA'}>UA</MenuItem>
+      <Select id="demo-simple-select" value={leng} onChange={handleChange}>
+        {Object.keys(resources).map((el: string) => {
+          return (
+            <MenuItem key={el} value={el}>
+              {el}
+            </MenuItem>
+          );
+        })}
       </Select>
     </FormControl>
   );

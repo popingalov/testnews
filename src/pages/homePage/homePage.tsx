@@ -3,7 +3,7 @@ import { Header } from 'component';
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <h1>Home Pages</h1>
     </>
   );
 }
