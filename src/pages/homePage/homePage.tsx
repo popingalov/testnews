@@ -18,7 +18,6 @@ export default function HomePage() {
   if (isLoading) return <Loader />;
   return (
     <>
-      <Loader />
       <button onClick={handler}>Click me</button>
       <h1>{result[0].title || 'testy'}</h1>
       {<Outlet />}
