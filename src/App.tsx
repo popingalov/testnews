@@ -37,6 +37,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  console.log('app');
+
   return (
     <>
       <Header />
