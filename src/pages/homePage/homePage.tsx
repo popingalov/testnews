@@ -1,15 +1,23 @@
 import { Loader } from 'component';
-import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+import {
+  useNavigate,
+  useLocation,
+  Outlet,
+  useLoaderData,
+} from 'react-router-dom';
 import { useGetPostsQuery } from 'redux/api/posts';
 
 function HomePage() {
-  const { data: result, isLoading } = useGetPostsQuery();
+  // const { data: result, isLoading } = useGetPostsQuery();
   const nav = useNavigate();
   const url = useLocation();
   function handler() {
     nav('/team');
   }
-  if (isLoading) return <Loader />;
+  const result: any = useLoaderData();
+  // if (isLoading) return <Loader />;
+  console.log(result);
+
   return (
     <>
       <button onClick={handler}>Click me</button>

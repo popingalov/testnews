@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useActionData, useAsyncValue } from 'react-router-dom';
 import { useGetTokenQuery } from 'redux/api/token';
 
 interface IProps {
@@ -7,10 +7,13 @@ interface IProps {
 }
 
 function PrivateRoute({ children, redirectTo = '/news' }: IProps) {
-  const isLoggedIn = useGetTokenQuery('');
-  console.log(isLoggedIn);
+  // const isLoggedIn = useGetTokenQuery('');
+  // console.log(isLoggedIn);
+  const test = useActionData();
+  const test2 = useAsyncValue();
+  console.log(test, test2);
 
-  return isLoggedIn && children ? children : <Navigate to={redirectTo} />;
+  return true && children ? children : <Navigate to={redirectTo} />;
 }
 
 export default PrivateRoute;
