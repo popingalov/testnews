@@ -1,6 +1,7 @@
 import { setupListeners } from '@reduxjs/toolkit/dist/query/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { postsApi } from './api/posts';
+import { tokenApi } from './api/token';
 
 // import {
 //   persistStore,
@@ -15,13 +16,14 @@ import { postsApi } from './api/posts';
 export const store = configureStore({
   reducer: {
     [postsApi.reducerPath]: postsApi.reducer,
+    [tokenApi.reducerPath]: tokenApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       //   serializableCheck: {
       //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       //   },
-    }).concat(postsApi.middleware),
+    }).concat(postsApi.middleware, tokenApi.middleware),
 });
 
 // enable listener behavior for the store

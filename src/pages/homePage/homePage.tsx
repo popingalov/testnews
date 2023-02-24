@@ -1,15 +1,9 @@
 import { Loader } from 'component';
-import {
-  useLoaderData,
-  useNavigate,
-  useLocation,
-  Outlet,
-} from 'react-router-dom';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useGetPostsQuery } from 'redux/api/posts';
 
-export default function HomePage() {
+function HomePage() {
   const { data: result, isLoading } = useGetPostsQuery();
-
   const nav = useNavigate();
   const url = useLocation();
   function handler() {
@@ -19,8 +13,11 @@ export default function HomePage() {
   return (
     <>
       <button onClick={handler}>Click me</button>
-      <h1>{result[0].title || 'testy'}</h1>
+      <h1>{result ? result[0].title : 'testy'}</h1>
+
       {<Outlet />}
     </>
   );
 }
+
+export { HomePage };

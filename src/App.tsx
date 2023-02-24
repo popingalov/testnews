@@ -5,6 +5,7 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
+import PrivateRoute from 'helpers/privateRoute';
 const router = createBrowserRouter([
   {
     children: [
@@ -14,16 +15,11 @@ const router = createBrowserRouter([
       },
     ],
     path: '/',
-    element: <HomePage />,
-    // loader: async ({ params, request }) => {
-    //   // const result = await postsApi.useGetPostsQuery();
-    //   const result = await await fetch(
-    //     'https://jsonplaceholder.typicode.com/posts/1',
-    //   );
-    //   console.log('loader');
-    //   return result;
-    // },
-
+    element: [
+      <PrivateRoute key="privateRoute">
+        <HomePage />
+      </PrivateRoute>,
+    ],
     errorElement: <Navigate to="/" />,
   },
   {
