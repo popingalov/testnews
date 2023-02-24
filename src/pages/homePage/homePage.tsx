@@ -3,20 +3,19 @@ import {
   useNavigate,
   useLocation,
   Outlet,
-  useLoaderData,
+  // useLoaderData,
 } from 'react-router-dom';
 import { useGetPostsQuery } from 'redux/api/posts';
 
 function HomePage() {
-  // const { data: result, isLoading } = useGetPostsQuery();
+  const { data: result, isLoading } = useGetPostsQuery();
+  // const result: any = useLoaderData();
   const nav = useNavigate();
   const url = useLocation();
   function handler() {
     nav('/team');
   }
-  const result: any = useLoaderData();
-  // if (isLoading) return <Loader />;
-  console.log(result);
+  if (isLoading) return <Loader />;
 
   return (
     <>

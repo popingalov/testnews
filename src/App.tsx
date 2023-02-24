@@ -1,14 +1,9 @@
 import { HomePage } from './pages';
 import { Header, Loader } from 'component';
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-  defer,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import PrivateRoute from 'helpers/privateRoute';
-import { store } from 'redux/store';
-import { postsApi } from 'redux/api/posts';
+// import { store } from 'redux/store';
+// import { postsApi } from 'redux/api/posts';
 const router = createBrowserRouter([
   {
     children: [
@@ -23,13 +18,15 @@ const router = createBrowserRouter([
         <HomePage />
       </PrivateRoute>
     ),
-    loader: async () => {
-      const { data } = await store.dispatch(
-        postsApi.endpoints.getPosts.initiate(),
-      );
-      return data;
-    },
-    errorElement: <Navigate to="/" />,
+
+    //чисто для теста робив, ви спитаєте нахера? Да я і сам не знаю
+    //   loader: async () => {
+    //     const { data } = await store.dispatch(
+    //       postsApi.endpoints.getPosts.initiate(),
+    //     );
+    //     return data;
+    //   },
+    //   errorElement: <Navigate to="/" />,
   },
   {
     path: '/news',
