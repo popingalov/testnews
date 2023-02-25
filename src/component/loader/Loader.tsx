@@ -1,18 +1,12 @@
 import { Box, CircularProgress } from '@mui/material';
-
+import { Portal } from 'component';
+import s from './style.module.css';
 export default function Loader() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100vw',
-        height: '100vh',
-        position: 'absolute',
-      }}
-    >
-      <CircularProgress />
-    </Box>
+    <Portal>
+      <Box className={s.box}>
+        <CircularProgress />
+      </Box>
+    </Portal>
   );
 }
