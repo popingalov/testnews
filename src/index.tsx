@@ -13,7 +13,8 @@ import './index.css';
 //компоненти
 import App from './App';
 import theme from 'constants/styleThema';
-import { store } from 'redux/store';
+import { store, persistor } from 'redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 //код
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -21,9 +22,11 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
 );

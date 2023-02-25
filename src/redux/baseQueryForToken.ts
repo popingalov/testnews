@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from './store';
-import { BASE_URL } from 'constants/api';
+import { TOKEN_URL } from 'constants/api';
 
 export default fetchBaseQuery({
   prepareHeaders: (headers, { getState }) => {
@@ -8,8 +8,7 @@ export default fetchBaseQuery({
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
     }
-    console.log(headers.get('Authorization'));
     return headers;
   },
-  baseUrl: BASE_URL,
+  baseUrl: TOKEN_URL,
 });
