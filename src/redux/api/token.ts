@@ -1,7 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { useDispatch } from 'react-redux';
 import baseQuery from 'redux/baseQueryForToken';
-import { setToken } from './slice/tokenSlice';
 export const tokenApi = createApi({
   reducerPath: 'tokenApi',
   baseQuery,

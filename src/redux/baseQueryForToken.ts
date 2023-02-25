@@ -6,7 +6,7 @@ export default fetchBaseQuery({
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).token;
     if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
+      headers.set('Authorization', `Bearer ${token.token}`);
     }
     return headers;
   },

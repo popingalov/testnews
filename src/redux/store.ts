@@ -2,7 +2,7 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { postsApi } from './api/posts';
 import { tokenApi } from './api/token';
-import tokenReducer from './api/slice/tokenSlice';
+import tokenReducer from './slice/tokenSlice';
 import {
   persistStore,
   FLUSH,
@@ -27,12 +27,9 @@ export const store = configureStore({
     }).concat(postsApi.middleware, tokenApi.middleware),
 });
 
-// enable listener behavior for the store
 setupListeners(store.dispatch);
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 
 export const persistor = persistStore(store);
