@@ -4,9 +4,7 @@ import s from './style.module.css';
 export default function Loader() {
   return (
     <Portal>
-      <Box className={s.box}>
-        <CircularProgress />
-      </Box>
+      <CircularProgress className={s.box} />
     </Portal>
   );
 }

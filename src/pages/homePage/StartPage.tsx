@@ -30,7 +30,8 @@ export default function HomePage() {
     }
   }, [loadToken]);
 
-  if (isLoading || loadToken) return <Loader />;
+  if (true) return <Loader />;
+  // if (isLoading || loadToken) return <Loader />;
 
   return (
     <>
