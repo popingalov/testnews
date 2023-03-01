@@ -30,14 +30,12 @@ export default function HomePage() {
     }
   }, [loadToken]);
 
-  if (true) return <Loader />;
-  // if (isLoading || loadToken) return <Loader />;
+  if (isLoading || loadToken) return <Loader />;
 
   return (
     <>
       <button onClick={handler}>Click me</button>
       <h1>{result ? result[0].title : 'testy'}</h1>
-
       {<Outlet />}
     </>
   );

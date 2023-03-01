@@ -1,3 +1,11 @@
 {
-  "age": "Age"
+  "header": {
+    "nav": { "0": "HOME", "1": "NEWS", "2": "PROFILE" },
+    "settings": {
+      "0": "Profile",
+      "1": "Saving News",
+      "2": "Logout",
+      "title": "Open settings"
+    }
+  }
 }

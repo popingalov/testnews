@@ -5,10 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 //
 import { resources } from 'i18n';
+
 //код
 export default function LanguageSelection() {
   const [leng, setLeng] = useState<string>('EN');
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   function handleChange(ev: SelectChangeEvent) {
     const { value } = ev.target;
     i18n.changeLanguage(value);
