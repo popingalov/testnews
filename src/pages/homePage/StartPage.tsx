@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import {
   useNavigate,
   Outlet,
+  useLocation,
   // useLoaderData,
 } from 'react-router-dom';
 import { useGetPostsQuery } from 'redux/api/posts';
@@ -12,11 +13,11 @@ import { useAppDispatch } from 'hooks/hook';
 
 export default function HomePage() {
   const { data: result, isLoading } = useGetPostsQuery();
-  // const result: any = useLoaderData();
   const upDisp = useAppDispatch();
   const base = { username: 'admin', password: 12345 };
   const [createToken, { isLoading: loadToken, data }] =
     useCreateTokenMutation();
+  const location = useLocation();
   const nav = useNavigate();
 
   async function handler() {
@@ -26,7 +27,9 @@ export default function HomePage() {
   useEffect(() => {
     if (data) {
       upDisp(setToken(data.token));
-      nav('/team');
+      console.log(location);
+
+      nav(location.pathname + '/team');
     }
   }, [loadToken]);
 

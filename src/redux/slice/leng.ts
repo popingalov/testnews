@@ -2,15 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 const initialState = {
-  token: null,
+  leng: 'EN',
 };
 
-export const tokenSlice = createSlice({
-  name: 'token',
+export const lengSlice = createSlice({
+  name: 'leng',
   initialState,
   reducers: {
-    setToken: (state, { payload }) => {
-      state.token = payload;
+    setLeng: (state, { payload }) => {
+      state.leng = payload;
     },
     logout: () => initialState,
   },
@@ -21,8 +21,8 @@ const persistConfig = {
   storage,
 };
 
-const tokenReuce = tokenSlice.reducer;
+const tokenReuce = lengSlice.reducer;
 
-export const { setToken } = tokenSlice.actions;
+export const { setLeng } = lengSlice.actions;
 
 export default persistReducer(persistConfig, tokenReuce);

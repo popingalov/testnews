@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { postsApi } from './api/posts';
 import { tokenApi } from './api/token';
 import tokenReducer from './slice/tokenSlice';
+import lengReducer from './slice/leng';
 import {
   persistStore,
   FLUSH,
@@ -18,6 +19,7 @@ export const store = configureStore({
     [postsApi.reducerPath]: postsApi.reducer,
     [tokenApi.reducerPath]: tokenApi.reducer,
     token: tokenReducer,
+    leng: lengReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

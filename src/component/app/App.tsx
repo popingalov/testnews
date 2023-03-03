@@ -1,14 +1,23 @@
 import { RouterProvider } from 'react-router-dom';
 import { Container } from '@mui/material';
-
+import { useEffect } from 'react';
 //
 import { Loader } from 'component';
 //
 import s from './style.module.css';
 import { router } from './router';
+import { useTranslation } from 'react-i18next';
+import { useAppSelector } from 'hooks/hook';
+import { getLeng } from 'redux/select/lengSelect';
 //
 
 function App() {
+  const { i18n } = useTranslation();
+  const leng = useAppSelector(getLeng);
+  useEffect(() => {
+    i18n.changeLanguage(leng);
+    console.log('triger', leng);
+  }, []);
   return (
     <>
       <Container className={s.container}>
