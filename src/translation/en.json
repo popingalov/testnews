@@ -7,5 +7,8 @@
       "2": "Logout",
       "title": "Open settings"
     }
+  },
+  "errorElement": {
+    "message": "Hello, you have found a secret level, enjoy!"
   }
 }

@@ -1,11 +1,24 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 // import { store } from 'redux/store';
 // import { postsApi } from 'redux/api/posts';
 //
 import { HomePage } from '../../pages';
 import Layout from 'component/layout/Layoute';
 import loader from 'helpers/loader';
+import ErrorElement from 'component/errorElement/ErrorElement';
+import Header from 'component/header/Header';
 export const router = createBrowserRouter([
+  {
+    path: '/',
+    //можна додати стартову сторінку
+    element: <Navigate to="home" />,
+    errorElement: (
+      <>
+        <Header />
+        <ErrorElement />
+      </>
+    ),
+  },
   {
     path: '/',
     element: <Layout />,
