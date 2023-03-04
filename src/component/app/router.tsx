@@ -2,7 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 // import { store } from 'redux/store';
 // import { postsApi } from 'redux/api/posts';
 //
-import { HomePage } from '../../pages';
+import { HomePage, NewsPage } from 'pages';
 import Layout from 'component/layout/Layoute';
 import loader from 'helpers/loader';
 import ErrorElement from 'component/errorElement/ErrorElement';
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
 
       {
         path: '/news',
-        element: <HomePage />,
+        element: <NewsPage />,
         children: [
           {
             path: 'team',

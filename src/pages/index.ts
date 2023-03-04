@@ -1,3 +1,3 @@
 import HomePage from './homePage/StartPage';
-
-export { HomePage };
+import NewsPage from './newsPage/NewsPage';
+export { HomePage, NewsPage };

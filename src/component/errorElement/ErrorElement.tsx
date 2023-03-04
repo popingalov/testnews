@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 //
 import gif from 'assets/gif.gif';
 import dance from 'assets/danceWithMe.mp3';
@@ -19,6 +18,7 @@ export default function ErrorElement() {
     return () => {
       audio.pause();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
