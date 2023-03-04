@@ -5,4 +5,14 @@ import Portal from './portal/Portal';
 import App from './app/App';
 import Layout from './layout/Layoute';
 import ErrorElement from './errorElement/ErrorElement';
-export { LanguageSelection, Header, Loader, Portal, App, Layout, ErrorElement };
+import DialogForm from './dialogForm/DialogForm';
+export {
+  LanguageSelection,
+  Header,
+  Loader,
+  Portal,
+  App,
+  Layout,
+  ErrorElement,
+  DialogForm,
+};

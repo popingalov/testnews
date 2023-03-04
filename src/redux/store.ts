@@ -4,6 +4,7 @@ import { postsApi } from './api/posts';
 import { tokenApi } from './api/token';
 import tokenReducer from './slice/tokenSlice';
 import lengReducer from './slice/leng';
+import { triggerReduce } from './slice/trigers';
 import {
   persistStore,
   FLUSH,
@@ -20,6 +21,7 @@ export const store = configureStore({
     [tokenApi.reducerPath]: tokenApi.reducer,
     token: tokenReducer,
     leng: lengReducer,
+    triggers: triggerReduce,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

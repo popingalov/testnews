@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { store } from 'redux/store';
 
 import translationEn from './translation/en.json';
 import translationUa from './translation/ua.json';

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-const portal: HTMLDivElement = document.querySelector('#portal')!;
+const portal: HTMLElement = document.getElementById('portal')!;
 
 interface IProp {
   children: ReactNode;

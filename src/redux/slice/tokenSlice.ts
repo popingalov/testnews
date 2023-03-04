@@ -23,6 +23,6 @@ const persistConfig = {
 
 const tokenReuce = tokenSlice.reducer;
 
-export const { setToken } = tokenSlice.actions;
+export const { setToken, logout } = tokenSlice.actions;
 
 export default persistReducer(persistConfig, tokenReuce);

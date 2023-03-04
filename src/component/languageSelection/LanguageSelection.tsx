@@ -1,6 +1,5 @@
 import { FormControl, MenuItem, Select } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 //
