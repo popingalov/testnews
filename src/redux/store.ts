@@ -14,11 +14,13 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { pexelsApi } from './api/pixel';
 
 export const store = configureStore({
   reducer: {
     [postsApi.reducerPath]: postsApi.reducer,
     [tokenApi.reducerPath]: tokenApi.reducer,
+    [pexelsApi.reducerPath]: pexelsApi.reducer,
     token: tokenReducer,
     leng: lengReducer,
     triggers: triggerReduce,
@@ -28,7 +30,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(postsApi.middleware, tokenApi.middleware),
+    }).concat(postsApi.middleware, tokenApi.middleware, pexelsApi.middleware),
 });
 
 setupListeners(store.dispatch);

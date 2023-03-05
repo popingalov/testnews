@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, MouseEvent, useRef } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -25,6 +25,7 @@ export default function DialogForm() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const nav = useNavigate();
+  const closeRef = useRef(null);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [nameError, setNameError] = useState(false);
@@ -84,7 +85,12 @@ export default function DialogForm() {
   }
 
   return (
-    <Dialog open={true} aria-labelledby="registration">
+    <Dialog
+      ref={closeRef}
+      onClose={cancelHandler}
+      open={true}
+      aria-labelledby="registration"
+    >
       <DialogTitle id="registration">{t('dialogForm.title')}</DialogTitle>
       <DialogContent>
         <DialogContentText>{t('dialogForm.context')}</DialogContentText>

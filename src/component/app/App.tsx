@@ -7,7 +7,7 @@ import { Loader } from 'component';
 import s from './style.module.css';
 import { router } from './router';
 import { useTranslation } from 'react-i18next';
-import {  useAppSelector } from 'hooks/hook';
+import { useAppSelector } from 'hooks/hook';
 import { getLeng } from 'redux/select/lengSelect';
 //
 
