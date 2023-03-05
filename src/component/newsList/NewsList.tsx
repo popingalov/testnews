@@ -1,15 +1,16 @@
 import { Grid } from '@mui/material';
-import NewsItem from './NewsItem';
+import NewsItem from './newsItem/NewsItem';
 
 interface IProps {
   data: IPhoto[];
+  news: IPost[];
 }
 
-export default function NewsList({ data }: IProps) {
+export default function NewsList({ data, news }: IProps) {
   return (
     <Grid container spacing={2}>
-      {data.map(el => (
-        <NewsItem key={el.id} item={el} />
+      {news.map((el, idx) => (
+        <NewsItem key={el.id} newsItem={el} photoItem={data[idx]} />
       ))}
     </Grid>
   );

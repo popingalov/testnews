@@ -22,5 +22,14 @@
     "nameLabel": { "first": "Please enter", "second": "Your name" },
     "passwordLabel": { "first": "Please enter", "second": "Password" },
     "buttons": { "cancel": "Cancel", "submit": "Submit" }
+  },
+  "newsPage": {
+    "page": { "button": " Load more" },
+    "newsItem": {
+      "title": "Title",
+      "news": "News",
+      "author": "Author",
+      "button": "Not interested"
+    }
   }
 }

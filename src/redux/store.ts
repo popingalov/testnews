@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { postsApi } from './api/posts';
 import { tokenApi } from './api/token';
 import tokenReducer from './slice/tokenSlice';
+import removeSimulation from './slice/removeSimulation';
 import lengReducer from './slice/leng';
 import { triggerReduce } from './slice/trigers';
 import {
@@ -24,6 +25,7 @@ export const store = configureStore({
     token: tokenReducer,
     leng: lengReducer,
     triggers: triggerReduce,
+    removeSimulation: removeSimulation,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
