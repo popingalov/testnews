@@ -6,10 +6,14 @@ export const postsApi = createApi({
   baseQuery,
   tagTypes: ['posts'],
   endpoints: builder => ({
-    getPosts: builder.query<any, void>({
-      query() {
+    getPosts: builder.query<any, { page?: number; limit?: number }>({
+      query: ({ page = 1, limit = 10 }) => {
         return {
-          url: '',
+          url: '/posts',
+          params: {
+            _page: page,
+            _limit: limit,
+          },
         };
       },
       providesTags: ['posts'],

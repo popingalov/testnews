@@ -6,6 +6,7 @@ import App from './app/App';
 import Layout from './layout/Layoute';
 import ErrorElement from '../pages/errorPage/ErrorElement';
 import DialogForm from './dialogForm/DialogForm';
+import NewsList from './newsList/NewsList';
 export {
   LanguageSelection,
   Header,
@@ -15,4 +16,5 @@ export {
   Layout,
   ErrorElement,
   DialogForm,
+  NewsList,
 };
