@@ -16,10 +16,13 @@ import { useCreateTokenMutation } from 'redux/api/token';
 import { setToken } from 'redux/slice/tokenSlice';
 import { useNavigate } from 'react-router-dom';
 import { changeDialogTrigger, changeLoaderTrigger } from 'redux/slice/trigers';
+import { useTranslation } from 'react-i18next';
 
-const { REACT_APP_NAME: envName, REACT_APP_PASSWORD: envPass } = process.env;
+const { REACT_APP_NAME: envName, REACT_APP_PASSWORD: envPassword } =
+  process.env;
 
 export default function DialogForm() {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const nav = useNavigate();
   const [name, setName] = useState('');
@@ -55,24 +58,24 @@ export default function DialogForm() {
     const value = event.target.value;
     setPassword(value);
     if (value.length >= 5) {
-      setPasswordError(value !== envPass);
+      setPasswordError(value !== envPassword);
     }
   };
 
   const handlePasswordBlur = () => {
-    setPasswordError(password !== envPass);
+    setPasswordError(password !== envPassword);
   };
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = () => {
-    if (name === envName && password === envPass) {
+    if (name === envName && password === envPassword) {
       createToken({ username: name, password: Number(password) });
       dispatch(changeDialogTrigger(true));
       dispatch(changeLoaderTrigger(true));
     } else {
       setNameError(name !== envName);
-      setPasswordError(password !== envPass);
+      setPasswordError(password !== envPassword);
     }
   };
 
@@ -82,15 +85,18 @@ export default function DialogForm() {
 
   return (
     <Dialog open={true} aria-labelledby="registration">
-      <DialogTitle id="registration">Log in</DialogTitle>
+      <DialogTitle id="registration">{t('dialogForm.title')}</DialogTitle>
       <DialogContent>
-        <DialogContentText>Press something</DialogContentText>
+        <DialogContentText>{t('dialogForm.context')}</DialogContentText>
         <TextField
-          // autoFocus
           required
           margin="dense"
           id="name"
-          label={nameError ? 'Please enter "admin"' : 'Your name'}
+          label={
+            nameError
+              ? `${t('dialogForm.nameLabel.first')} ${envName}`
+              : t('dialogForm.nameLabel.second')
+          }
           type="text"
           fullWidth
           value={name}
@@ -102,7 +108,11 @@ export default function DialogForm() {
           required
           margin="dense"
           id="password"
-          label={passwordError ? 'Please enter "12345"' : 'Password'}
+          label={
+            passwordError
+              ? `${t('dialogForm.passwordLabel.first')} ${envPassword}`
+              : t('dialogForm.passwordLabel.second')
+          }
           type={showPassword ? 'text' : 'password'}
           fullWidth
           value={password}
@@ -119,8 +129,10 @@ export default function DialogForm() {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={cancelHandler}>Cancel</Button>
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={cancelHandler}>
+          {t('dialogForm.buttons.cancel')}
+        </Button>
+        <Button onClick={handleSubmit}>{t('dialogForm.buttons.submit')}</Button>
       </DialogActions>
     </Dialog>
   );

@@ -15,5 +15,12 @@
   },
   "errorElement": {
     "message": "Вітаю, ви знайшли секретний рівень, насолоджуйтесь!"
+  },
+  "dialogForm": {
+    "title": "Авторизація",
+    "context": "Введіть ваші дані",
+    "nameLabel": { "first": "Введіть", "second": "Ваше Ім'я" },
+    "passwordLabel": { "first": "Введіть", "second": "Пароль" },
+    "buttons": { "cancel": "Скасувати", "submit": "Надіслати" }
   }
 }

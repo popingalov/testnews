@@ -15,5 +15,12 @@
   },
   "errorElement": {
     "message": "Hello, you have found a secret level, enjoy!"
+  },
+  "dialogForm": {
+    "title": "Authorization",
+    "context": "Enter your details",
+    "nameLabel": { "first": "Please enter", "second": "Your name" },
+    "passwordLabel": { "first": "Please enter", "second": "Password" },
+    "buttons": { "cancel": "Cancel", "submit": "Submit" }
   }
 }
