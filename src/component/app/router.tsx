@@ -48,7 +48,6 @@ export const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        //спочатку спробував зробити через лоадер але це була погана ідея
         loader: loader,
         element: <ProfilePage />,
       },
