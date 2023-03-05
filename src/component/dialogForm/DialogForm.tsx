@@ -14,7 +14,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useAppDispatch } from 'hooks/hook';
 import { useCreateTokenMutation } from 'redux/api/token';
 import { setToken } from 'redux/slice/tokenSlice';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { changeDialogTrigger, changeLoaderTrigger } from 'redux/slice/trigers';
 
 const { REACT_APP_NAME: envName, REACT_APP_PASSWORD: envPass } = process.env;
@@ -27,15 +27,13 @@ export default function DialogForm() {
   const [nameError, setNameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const location = useLocation();
   const [createToken, { isSuccess, data }] = useCreateTokenMutation();
 
   useEffect(() => {
     if (isSuccess) {
       dispatch(setToken(data.token));
       dispatch(changeDialogTrigger(false));
-      dispatch(changeLoaderTrigger(true));
-      console.log(location);
+      dispatch(changeLoaderTrigger(false));
       nav('profile');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,8 +55,6 @@ export default function DialogForm() {
     const value = event.target.value;
     setPassword(value);
     if (value.length >= 5) {
-      console.log(process.env);
-
       setPasswordError(value !== envPass);
     }
   };
@@ -73,11 +69,16 @@ export default function DialogForm() {
     if (name === envName && password === envPass) {
       createToken({ username: name, password: Number(password) });
       dispatch(changeDialogTrigger(true));
+      dispatch(changeLoaderTrigger(true));
     } else {
       setNameError(name !== envName);
       setPasswordError(password !== envPass);
     }
   };
+
+  function cancelHandler() {
+    dispatch(changeDialogTrigger(false));
+  }
 
   return (
     <Dialog open={true} aria-labelledby="registration">
@@ -118,7 +119,7 @@ export default function DialogForm() {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => console.log('Cancelled')}>Cancel</Button>
+        <Button onClick={cancelHandler}>Cancel</Button>
         <Button onClick={handleSubmit}>Submit</Button>
       </DialogActions>
     </Dialog>

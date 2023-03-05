@@ -5,12 +5,12 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { HomePage, NewsPage } from 'pages';
 import Layout from 'component/layout/Layoute';
 import loader from 'helpers/loader';
-import ErrorElement from 'component/errorElement/ErrorElement';
+import ErrorElement from 'pages/errorPage/ErrorElement';
 import Header from 'component/header/Header';
+import ProfilePage from 'pages/profilePage/ProfilePage';
 export const router = createBrowserRouter([
   {
     path: '/',
-    //можна додати стартову сторінку
     element: <Navigate to="home" />,
     errorElement: (
       <>
@@ -48,8 +48,9 @@ export const router = createBrowserRouter([
       },
       {
         path: '/profile',
+        //спочатку спробував зробити через лоадер але це була погана ідея
         loader: loader,
-        element: <HomePage />,
+        element: <ProfilePage />,
       },
     ],
   },

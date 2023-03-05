@@ -1,10 +1,15 @@
 {
   "header": {
-    "nav": { "0": "HOME", "1": "NEWS", "2": "PROFILE" },
+    "nav": {
+      "home": "HOME",
+      "news": "NEWS",
+      "profile": "PROFILE",
+      "auth": "Log In"
+    },
     "settings": {
-      "0": "Profile",
-      "1": "Saving News",
-      "2": "Logout",
+      "profile": "Profile",
+      "savingNews": "Saving News",
+      "logout": "Logout",
       "title": "Open settings"
     }
   },

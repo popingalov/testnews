@@ -4,7 +4,7 @@ import Loader from './loader/Loader';
 import Portal from './portal/Portal';
 import App from './app/App';
 import Layout from './layout/Layoute';
-import ErrorElement from './errorElement/ErrorElement';
+import ErrorElement from '../pages/errorPage/ErrorElement';
 import DialogForm from './dialogForm/DialogForm';
 export {
   LanguageSelection,
