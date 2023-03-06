@@ -23,7 +23,7 @@ const ProfilePage = () => {
           )}
         </Card>
       ) : (
-        <p> Відсутні записи</p>
+        <p> {t('profile')}</p>
       )}
     </>
   );
