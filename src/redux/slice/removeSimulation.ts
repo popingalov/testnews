@@ -3,18 +3,21 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 interface IinitialState {
-  removeSimulation: number[];
+  removeId: number[];
+  removeItems: IPost[];
 }
 const initialState: IinitialState = {
-  removeSimulation: [],
+  removeId: [],
+  removeItems: []
 };
 
 export const removeSimulationSlice = createSlice({
   name: 'removeSimulation',
   initialState,
   reducers: {
-    setRemoveId: (state, { payload }: PayloadAction<number>) => {
-      state.removeSimulation.push(payload);
+    setRemoveId: (state, { payload }: PayloadAction<IPost>) => {
+      state.removeItems.push(payload)
+      state.removeId.push(payload.id)
     },
   },
 });

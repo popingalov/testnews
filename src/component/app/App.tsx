@@ -10,8 +10,10 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'hooks/hook';
 import { getLeng } from 'redux/select/lengSelect';
 //
-
+import { getDialogTrigger } from 'redux/select/trigers';
 function App() {
+  const dialog = useAppSelector(getDialogTrigger);
+
   const { i18n } = useTranslation();
   const leng = useAppSelector(getLeng);
   useEffect(() => {

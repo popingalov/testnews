@@ -7,8 +7,12 @@ import { Box, Typography } from '@mui/material';
 //
 import s from './style.module.css';
 import { useTranslation } from 'react-i18next';
+import { DialogForm } from 'component';
+import { getDialogTrigger } from 'redux/select/trigers';
+import { useAppSelector } from 'hooks/hook';
 //
 export default function ErrorElement() {
+  const dialog = useAppSelector(getDialogTrigger);
   const { t } = useTranslation();
   const audio = new Audio(dance);
   useEffect(() => {
@@ -23,6 +27,7 @@ export default function ErrorElement() {
 
   return (
     <Box className={s.box}>
+      {dialog && <DialogForm />}
       <Typography>{t('errorElement.message')}</Typography>
       <img className={s.alert} src={gif} alt="gif" />
     </Box>

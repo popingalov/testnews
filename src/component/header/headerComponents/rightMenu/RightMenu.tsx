@@ -10,7 +10,9 @@ import {
 import { useTranslation } from 'react-i18next';
 import s from '../../style.module.css';
 import { SETTINGS } from 'constants/routes';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'hooks/hook';
+import { logout } from 'redux/slice/tokenSlice';
 interface IProps {
   handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void;
   anchorElUser: null | HTMLElement;
@@ -23,6 +25,12 @@ export default function RightMenu({
   handleCloseUserMenu,
 }: IProps) {
   const { t } = useTranslation();
+  const nav = useNavigate();
+  const dispatch = useAppDispatch();
+  function handleLogout() {
+    dispatch(logout());
+    nav('home');
+  }
   return (
     <Box sx={{ flexGrow: 0 }} className={s.boxSelector}>
       <Tooltip title={t('header.settings.title')}>
@@ -46,15 +54,29 @@ export default function RightMenu({
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {SETTINGS.map(setting => (
-          <Link key={setting} to={setting}>
-            <MenuItem onClick={handleCloseUserMenu}>
+        {SETTINGS.map(setting =>
+          setting !== 'logout' ? (
+            <Link key={setting} to={setting}>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">
+                  {t(`header.settings.${setting as 'profile'}`)}
+                </Typography>
+              </MenuItem>
+            </Link>
+          ) : (
+            <MenuItem
+              key={setting}
+              onClick={() => {
+                handleLogout();
+                handleCloseUserMenu();
+              }}
+            >
               <Typography textAlign="center">
                 {t(`header.settings.${setting as 'profile'}`)}
               </Typography>
             </MenuItem>
-          </Link>
-        ))}
+          ),
+        )}
       </Menu>
     </Box>
   );

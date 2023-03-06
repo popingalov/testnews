@@ -9,26 +9,28 @@ import {
   Typography,
 } from '@mui/material';
 import { useDeletePostMutation } from 'redux/api/posts';
-import { useAppDispatch } from 'hooks/hook';
+import { useAppDispatch, useAppSelector } from 'hooks/hook';
 import { setRemoveId } from 'redux/slice/removeSimulation';
 import { useTranslation } from 'react-i18next';
+import { getToken } from 'redux/select/tokenSelect';
 
 interface IProps {
   photoItem: IPhoto;
   newsItem: IPost;
+  trigger: boolean;
 }
 
-export default function NewsItem({ photoItem, newsItem }: IProps) {
+export default function NewsItem({ photoItem, newsItem, trigger }: IProps) {
+  const token = useAppSelector(getToken);
   const [removeItem] = useDeletePostMutation();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  function handlerRemove(id: number) {
-    removeItem({ id });
-    dispatch(setRemoveId(id));
+  function handlerRemove(item: IPost) {
+    removeItem({ id: item.id });
+    dispatch(setRemoveId(item));
   }
   const { src, photographer } = photoItem;
-  console.log(newsItem);
 
   return (
     <Grid item xs={6} md={4}>
@@ -51,17 +53,22 @@ export default function NewsItem({ photoItem, newsItem }: IProps) {
               <span className={s.text}>{photographer}</span>
             </Typography>
             <Typography className={s.fix} variant="body1">
-              <Typography className={s.span}>
-                {t('newsPage.newsItem.news')}:
-              </Typography>
-              <Typography className={s.text}>{newsItem.body}.</Typography>
+              <span className={s.span}>{t('newsPage.newsItem.news')}:</span>
+              <span className={s.text}>{newsItem.body}.</span>
             </Typography>
           </CardContent>
         </div>
         <CardActions>
-          <Button variant="text" onClick={() => handlerRemove(newsItem.id)}>
-            {t('newsPage.newsItem.button')}
-          </Button>
+          {trigger && (
+            <Button
+              disabled={!token}
+              variant="text"
+              aria-disabled={!!token ? 'true' : undefined}
+              onClick={() => handlerRemove(newsItem)}
+            >
+              {t('newsPage.newsItem.button')}
+            </Button>
+          )}
         </CardActions>
       </Card>
     </Grid>

@@ -12,7 +12,9 @@ export const tokenSlice = createSlice({
     setToken: (state, { payload }) => {
       state.token = payload;
     },
-    logout: () => initialState,
+    logout: state => {
+      state.token = null;
+    },
   },
 });
 

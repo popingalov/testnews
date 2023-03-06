@@ -5,31 +5,24 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGetPhotosQuery } from 'redux/api/pixel';
 import { useGetPostsQuery } from 'redux/api/posts';
-import { getRemoveSimulation } from 'redux/select/removeSimulation';
+import { getRemoveSimulationId } from 'redux/select/removeSimulation';
 import { changeLoaderTrigger } from 'redux/slice/trigers';
 import s from './style.module.css';
 const NewsPage = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+  const filterId = useAppSelector(getRemoveSimulationId);
   const [allNews, setAllNews] = useState<IPost[]>([]);
   const [allPhoto, setPhotos] = useState<IPhoto[]>([]);
-  const { t } = useTranslation();
-  const filterId = useAppSelector(getRemoveSimulation);
   const [page, setPage] = useState(1);
-  const {
-    data: photos,
-    error,
-    isLoading,
-    isSuccess: isSuccessPhoto,
-  } = useGetPhotosQuery(page);
-  const {
-    data: news,
-    isLoading: loadNews,
-    isSuccess,
-  } = useGetPostsQuery({ page });
-
+  const [skip, setSkip] = useState(true);
+  const { data: photos, error, isLoading } = useGetPhotosQuery(page);
+  const { data: news, isLoading: loadNews } = useGetPostsQuery(
+    { page },
+    { skip },
+  );
   useEffect(() => {
-    const test = isSuccess && isSuccessPhoto;
-    if (test) {
+    if (news?.length) {
       news &&
         setAllNews(state => {
           return state.concat(news);
@@ -39,7 +32,9 @@ const NewsPage = () => {
           return state.concat(photos.photos);
         });
       dispatch(changeLoaderTrigger(false));
+      return;
     }
+    setSkip(false);
   }, [news]);
 
   function handlerLoadMore(event: React.MouseEvent<HTMLButtonElement>) {

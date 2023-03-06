@@ -1,4 +1,5 @@
 {
+  "global": { "loader": "Loading...", "error": "Error" },
   "header": {
     "nav": {
       "home": "HOME",
@@ -31,5 +32,8 @@
       "author": "Author",
       "button": "Not interested"
     }
+  },
+  "homePage": {
+    "text": "Welcome to our news website, where you can find the latest news and updates on a variety of topics. From politics to entertainment, sports to technology, we strive to bring you the most informative and engaging content possible. Our team of experienced journalists work hard to deliver breaking news as it happens, while also providing in-depth analysis and thought-provoking opinion pieces. We value our readers and believe in the power of accurate and reliable journalism to inform and inspire. We hope you enjoy reading our news and we welcome your feedback and suggestions.With love, Oleksandr."
   }
 }

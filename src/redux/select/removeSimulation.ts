@@ -1,7 +1,10 @@
 import type { RootState } from '../store';
 
-const getRemoveSimulation = (state: RootState) => {
-  return state.removeSimulation.removeSimulation;
+const getRemoveSimulationId = (state: RootState) => {
+  return state.removeSimulation.removeId;
+};
+const getRemoveSimulationItems = (state: RootState) => {
+  return state.removeSimulation.removeItems;
 };
 
-export { getRemoveSimulation };
+export { getRemoveSimulationId, getRemoveSimulationItems };
